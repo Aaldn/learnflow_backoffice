@@ -1,9 +1,11 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:learnflow_backoffice/screens/login_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -37,9 +39,13 @@ class MyApp extends StatelessWidget {
           textButtonRadius: 5.0,
           filledButtonRadius: 5.0,
           elevatedButtonRadius: 5.0,
+          elevatedButtonSchemeColor: SchemeColor.background,
+          elevatedButtonSecondarySchemeColor: SchemeColor.primaryContainer,
           outlinedButtonRadius: 5.0,
+          outlinedButtonSchemeColor: SchemeColor.primaryContainer,
           inputDecoratorSchemeColor: SchemeColor.secondary,
-          inputDecoratorUnfocusedBorderIsColored: false,
+          inputDecoratorBackgroundAlpha: 51,
+          inputDecoratorUnfocusedHasBorder: false,
         ),
         keyColors: const FlexKeyColors(
           useSecondary: true,
@@ -75,9 +81,12 @@ class MyApp extends StatelessWidget {
           textButtonRadius: 5.0,
           filledButtonRadius: 5.0,
           elevatedButtonRadius: 5.0,
+          elevatedButtonSchemeColor: SchemeColor.background,
+          elevatedButtonSecondarySchemeColor: SchemeColor.primaryContainer,
           outlinedButtonRadius: 5.0,
+          outlinedButtonSchemeColor: SchemeColor.primaryContainer,
           inputDecoratorSchemeColor: SchemeColor.secondary,
-          inputDecoratorUnfocusedBorderIsColored: false,
+          inputDecoratorUnfocusedHasBorder: false,
         ),
         keyColors: const FlexKeyColors(
           useSecondary: true,
@@ -96,14 +105,7 @@ class MyApp extends StatelessWidget {
       // If you do not have a themeMode switch, uncomment this line
       // to let the device system mode control the theme mode:
       themeMode: ThemeMode.light,
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text("Learn Flow Back-office"),
-        ),
-        body: const Center(
-          child: Text("Learn Flow"),
-        ),
-      ),
+      home: const LoginScreen(),
     );
   }
 }
