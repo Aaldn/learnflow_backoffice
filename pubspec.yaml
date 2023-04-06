@@ -38,6 +38,7 @@ dependencies:
   flutter_native_splash: ^2.2.19
   flex_color_scheme: ^7.0.0
   google_fonts: ^4.0.3
+  flutter_launcher_icons: ^0.12.0
 
 dev_dependencies:
   flutter_test:
