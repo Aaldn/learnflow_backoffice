@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:learnflow_backoffice/screens/home_screen.dart';
 import 'package:learnflow_backoffice/widgets/elevated_button.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
@@ -85,7 +86,15 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             ),
                             const SizedBox(height: 50),
                             MyElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return const HomeScreen();
+                                    },
+                                  ),
+                                );
+                              },
                               child: const Text("Se connecter"),
                             ),
                           ],
