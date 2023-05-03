@@ -8,7 +8,7 @@ class Student with _$Student {
   factory Student({
     required String? firstName,
     required String? lastName,
-    required String? birthday,
+    required DateTime? birthday,
     required String? email,
     required String? address,
     required String? zipCode,
