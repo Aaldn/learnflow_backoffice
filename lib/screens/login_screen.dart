@@ -70,6 +70,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                           ),
                                           SizedBox(height: 20),
                                           TextField(
+                                            obscureText: true,
                                             decoration: InputDecoration(
                                               hintText: "Mot de passe",
                                               prefixIcon: Icon(Icons.key),
