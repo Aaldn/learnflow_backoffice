@@ -6,6 +6,7 @@ part 'manager.g.dart';
 @freezed
 class Manager with _$Manager {
   factory Manager({
+    required int? id,
     required String? firstName,
     required String? lastName,
     required String? email,

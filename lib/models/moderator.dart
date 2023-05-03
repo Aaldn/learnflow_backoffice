@@ -6,6 +6,7 @@ part 'moderator.g.dart';
 @freezed
 class Moderator with _$Moderator {
   factory Moderator({
+    required int? id,
     required String? firstName,
     required String? lastName,
     required String? email,

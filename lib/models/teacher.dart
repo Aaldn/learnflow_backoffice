@@ -6,6 +6,7 @@ part 'teacher.g.dart';
 @freezed
 class Teacher with _$Teacher {
   factory Teacher({
+    required int? id,
     required String? firstName,
     required String? lastName,
     required DateTime? birthday,
