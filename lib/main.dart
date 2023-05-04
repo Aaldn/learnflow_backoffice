@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       // Made for FlexColorScheme version 7.0.0. Make sure you
       // use same or higher package version, but still same major version.
       // If you use a lower version, some properties may not be supported.
