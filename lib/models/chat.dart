@@ -11,7 +11,7 @@ class Chat with _$Chat {
   factory Chat({
     required int? id,
     required String? message,
-    required String? datetime,
+    required DateTime? datetime,
     required Student? student,
     required Moderator? moderator,
     required Teacher? teacher,

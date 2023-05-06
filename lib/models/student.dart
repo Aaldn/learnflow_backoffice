@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:learnflow_backoffice/models/address.dart';
 
 part 'student.freezed.dart';
 part 'student.g.dart';
@@ -11,10 +12,9 @@ class Student with _$Student {
     required String? lastName,
     required DateTime? birthday,
     required String? email,
-    required String? address,
-    required String? zipCode,
     required String? phoneNumber,
     required String? profilePictureUrl,
+    required Address? address,
   }) = _Student;
 
   factory Student.fromJson(Map<String, dynamic> json) =>

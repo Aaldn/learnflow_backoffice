@@ -8,7 +8,7 @@ class TeacherValidation with _$TeacherValidation {
   factory TeacherValidation({
     required int? id,
     required DateTime? date,
-    required String? isValidated,
+    required bool? isValidated,
     required String? comment,
   }) = _TeacherValidation;
 
