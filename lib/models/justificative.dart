@@ -7,8 +7,8 @@ part 'justificative.g.dart';
 class Justificative with _$Justificative {
   factory Justificative({
     required int? id,
-    required String? fileUrl,
-    required String? description,
+    required String? uploadUrl,
+    required String? comment,
     required String? startDate,
     required String? endDate,
   }) = _Justificative;

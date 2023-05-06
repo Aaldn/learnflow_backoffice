@@ -9,7 +9,7 @@ part 'rating.g.dart';
 class Rating with _$Rating {
   factory Rating({
     required int? id,
-    required int? number,
+    required int? note,
     required Student? student,
     required Teacher? teacher,
   }) = _Rating;
