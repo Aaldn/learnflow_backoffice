@@ -11,7 +11,7 @@ import 'package:learnflow_backoffice/models/rating.dart';
 import 'package:learnflow_backoffice/models/report.dart';
 import 'package:learnflow_backoffice/models/report_type.dart';
 import 'package:learnflow_backoffice/models/school_subject.dart';
-import 'package:learnflow_backoffice/models/school_subject_teached.dart';
+import 'package:learnflow_backoffice/models/school_subject_taught.dart';
 import 'package:learnflow_backoffice/models/student.dart';
 import 'package:learnflow_backoffice/models/teacher.dart';
 import 'package:learnflow_backoffice/models/teacher_validation.dart';
@@ -192,23 +192,23 @@ abstract class ApiService extends ChopperService {
     @Body() Report report,
   );
 
-  // SchoolSubjectTeached
+  // SchoolSubjectTaught
   @Get()
-  Future<Response<List<SchoolSubjectTeached>>> getSchoolSubjectTeacheds();
+  Future<Response<List<SchoolSubjectTaught>>> getSchoolSubjectTaughts();
 
   @Get(path: "/school_subjects_teached/{id}")
-  Future<Response<SchoolSubjectTeached>> getSchoolSubjectTeached(
+  Future<Response<SchoolSubjectTaught>> getSchoolSubjectTaught(
       @Path('id') int id);
 
   @Post(path: "/school_subjects_teached/")
-  Future<Response<SchoolSubjectTeached>> createSchoolSubjectTeached(
-    @Body() SchoolSubjectTeached schoolSubjectsTeached,
+  Future<Response<SchoolSubjectTaught>> createSchoolSubjectTaught(
+    @Body() SchoolSubjectTaught schoolSubjectsTeached,
   );
 
   @Patch(path: "/school_subjects_teached/{id}/")
-  Future<Response<SchoolSubjectTeached>> updateSchoolSubjectTeached(
+  Future<Response<SchoolSubjectTaught>> updateSchoolSubjectTaught(
     @Path('id') int id,
-    @Body() SchoolSubjectTeached report,
+    @Body() SchoolSubjectTaught report,
   );
 
   // SchoolSubject
