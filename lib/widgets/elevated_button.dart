@@ -16,10 +16,22 @@ class MyElevatedButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return ElevatedButton(
       onPressed: onPressed,
-      style: Theme.of(context).elevatedButtonTheme.style!.copyWith(
+      style: Theme.of(context).elevatedButtonTheme.style?.copyWith(
             minimumSize: MaterialStatePropertyAll(
               Size(400, height),
             ),
+            textStyle: MaterialStatePropertyAll(
+              Theme.of(context).textTheme.labelLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+            ),
+            backgroundColor: MaterialStatePropertyAll(
+              Theme.of(context).colorScheme.background,
+            ),
+            foregroundColor: MaterialStatePropertyAll(
+              Theme.of(context).colorScheme.primary,
+            ),
+            elevation: const MaterialStatePropertyAll(10),
           ),
       child: child,
     );
