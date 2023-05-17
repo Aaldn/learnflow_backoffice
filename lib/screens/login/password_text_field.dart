@@ -24,26 +24,21 @@ class _PasswordTextFieldState extends ConsumerState<PasswordTextField> {
         prefixIcon: const Icon(
           Icons.lock,
         ),
-        suffixIcon: ClipRRect(
-          borderRadius: const BorderRadius.horizontal(
-            right: Radius.circular(30),
+        suffixIcon: Container(
+          clipBehavior: Clip.hardEdge,
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.primary.withOpacity(0.20),
+            borderRadius: const BorderRadius.horizontal(
+              right: Radius.circular(30),
+            ),
           ),
-          child: Container(
-            clipBehavior: Clip.hardEdge,
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.primary.withOpacity(0.20),
-              borderRadius: const BorderRadius.horizontal(
-                right: Radius.circular(30),
-              ),
-            ),
-            height: 60,
-            width: 60,
-            child: InkWell(
-              onHover: null,
-              onTap: () => setState(() => _obscureText = !_obscureText),
-              child: buildSuffixIcon(),
-            ),
+          height: 60,
+          width: 60,
+          child: InkWell(
+            onHover: null,
+            onTap: () => setState(() => _obscureText = !_obscureText),
+            child: buildSuffixIcon(),
           ),
         ),
       ),
