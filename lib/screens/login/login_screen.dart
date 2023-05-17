@@ -5,16 +5,11 @@ import 'package:learnflow_backoffice/screens/home_screen.dart';
 import 'package:learnflow_backoffice/screens/login/login_elevated_button.dart';
 import 'package:learnflow_backoffice/screens/login/login_form_card.dart';
 
-class LoginScreen extends ConsumerStatefulWidget {
+class LoginScreen extends ConsumerWidget {
   const LoginScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends ConsumerState<LoginScreen> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(

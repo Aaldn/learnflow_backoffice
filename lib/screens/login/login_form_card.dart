@@ -2,21 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:learnflow_backoffice/screens/login/password_text_field.dart';
 
-class MyLoginFormCard extends ConsumerStatefulWidget {
+class MyLoginFormCard extends ConsumerWidget {
   const MyLoginFormCard({super.key});
 
-  @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _MyLoginFormCardState();
-}
-
-class _MyLoginFormCardState extends ConsumerState<MyLoginFormCard> {
-  final _authFormKey = GlobalKey();
-  final _loginController = TextEditingController();
-  final _passwordController = TextEditingController();
+  get _authFormKey => GlobalKey();
+  get _loginController => TextEditingController();
+  get _passwordController => TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Form(
       key: _authFormKey,
       child: Card(
