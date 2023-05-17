@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:learnflow_backoffice/screens/login_screen.dart';
+import 'package:learnflow_backoffice/screens/login/login_screen.dart';
 
 class LogoutAlertDialog extends ConsumerWidget {
   const LogoutAlertDialog({super.key});
@@ -8,9 +8,9 @@ class LogoutAlertDialog extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return AlertDialog(
-      title: Column(
+      title: const Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
+        children: [
           Text('Se déconnecter ?'),
         ],
       ),
