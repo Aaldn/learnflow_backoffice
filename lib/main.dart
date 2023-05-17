@@ -2,7 +2,7 @@ import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:learnflow_backoffice/screens/login_screen.dart';
+import 'package:learnflow_backoffice/screens/login_screen/login_screen.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -43,6 +43,7 @@ class MyApp extends StatelessWidget {
           outlinedButtonRadius: 5.0,
           inputDecoratorBackgroundAlpha: 51,
           inputDecoratorUnfocusedHasBorder: false,
+          inputDecoratorRadius: 30,
         ),
         keyColors: const FlexKeyColors(
           useSecondary: true,
@@ -81,6 +82,7 @@ class MyApp extends StatelessWidget {
           outlinedButtonRadius: 5.0,
           inputDecoratorSchemeColor: SchemeColor.secondary,
           inputDecoratorUnfocusedHasBorder: false,
+          inputDecoratorRadius: 30,
         ),
         keyColors: const FlexKeyColors(
           useSecondary: true,

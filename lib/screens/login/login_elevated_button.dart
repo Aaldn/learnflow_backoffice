@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class MyElevatedButton extends ConsumerWidget {
-  const MyElevatedButton({
+class MyLoginElevatedButton extends ConsumerWidget {
+  const MyLoginElevatedButton({
     super.key,
     this.height = 50,
     this.onPressed,
