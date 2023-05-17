@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:learnflow_backoffice/screens/sub_screens/dashboard_sub_screen.dart';
-import 'package:learnflow_backoffice/screens/sub_screens/management_sub_screen.dart';
-import 'package:learnflow_backoffice/screens/sub_screens/settings_sub_screen.dart';
+import 'package:learnflow_backoffice/screens/home/dashboard_sub_screen.dart';
+import 'package:learnflow_backoffice/screens/home/management_sub_screen.dart';
+import 'package:learnflow_backoffice/screens/home/settings_sub_screen.dart';
 import 'package:learnflow_backoffice/widgets/navigation_rail.dart.dart';
 
 class HomeScreen extends HookConsumerWidget {

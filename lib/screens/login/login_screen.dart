@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:learnflow_backoffice/screens/home_screen.dart';
-import 'package:learnflow_backoffice/screens/login_screen/login_elevated_button.dart';
-import 'package:learnflow_backoffice/screens/login_screen/login_form_card.dart';
+import 'package:learnflow_backoffice/screens/login/login_elevated_button.dart';
+import 'package:learnflow_backoffice/screens/login/login_form_card.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});

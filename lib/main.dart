@@ -2,7 +2,7 @@ import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:learnflow_backoffice/screens/login_screen/login_screen.dart';
+import 'package:learnflow_backoffice/screens/login/login_screen.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
