@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:learnflow_backoffice/screens/login/password_text_field.dart';
+import 'package:learnflow_backoffice/screens/login/widgets/password_text_field.dart';
 
 class MyLoginFormCard extends ConsumerWidget {
   const MyLoginFormCard({super.key});
