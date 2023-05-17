@@ -42,11 +42,7 @@ class LoginScreen extends ConsumerWidget {
                         const SizedBox(height: 100),
                         const SizedBox(
                           width: 400,
-                          child: Column(
-                            children: [
-                              MyLoginFormCard(),
-                            ],
-                          ),
+                          child: MyLoginFormCard(),
                         ),
                         const SizedBox(height: 50),
                         MyLoginElevatedButton(
