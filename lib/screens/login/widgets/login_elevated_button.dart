@@ -15,24 +15,16 @@ class MyLoginElevatedButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        minimumSize: Size(400, height),
+        textStyle: Theme.of(context).textTheme.labelLarge?.copyWith(
+              fontWeight: FontWeight.bold,
+            ),
+        backgroundColor: Theme.of(context).colorScheme.background,
+        foregroundColor: Theme.of(context).colorScheme.primary,
+        elevation: 10,
+      ),
       onPressed: onPressed,
-      style: Theme.of(context).elevatedButtonTheme.style?.copyWith(
-            minimumSize: MaterialStatePropertyAll(
-              Size(400, height),
-            ),
-            textStyle: MaterialStatePropertyAll(
-              Theme.of(context).textTheme.labelLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-            ),
-            backgroundColor: MaterialStatePropertyAll(
-              Theme.of(context).colorScheme.background,
-            ),
-            foregroundColor: MaterialStatePropertyAll(
-              Theme.of(context).colorScheme.primary,
-            ),
-            elevation: const MaterialStatePropertyAll(10),
-          ),
       child: child,
     );
   }
