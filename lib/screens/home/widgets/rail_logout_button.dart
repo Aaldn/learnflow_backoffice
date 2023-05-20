@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:learnflow_backoffice/widgets/logout_alert_dialog.dart';
+import 'package:learnflow_backoffice/screens/home/widgets/logout_alert_dialog.dart';
 
 class RailLogoutButton extends ConsumerWidget {
   const RailLogoutButton({super.key});
@@ -8,18 +8,24 @@ class RailLogoutButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return InkWell(
+      borderRadius: BorderRadius.circular(30),
       onTap: () {
         showDialog(
           context: context,
           builder: (context) => const LogoutAlertDialog(),
         );
       },
-      child: const Padding(
-        padding: EdgeInsets.all(8.0),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            Icon(Icons.logout, color: Colors.grey),
-            Text("Déconnexion"),
+            const Icon(Icons.logout, color: Colors.black54),
+            Text(
+              "Déconnexion",
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    color: Colors.black54,
+                  ),
+            ),
           ],
         ),
       ),

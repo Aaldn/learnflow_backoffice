@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:learnflow_backoffice/widgets/rail_logout_button.dart';
+import 'package:learnflow_backoffice/screens/home/widgets/rail_logout_button.dart';
 
 final railIndexProvider = StateProvider<int>((ref) {
   return 0;
@@ -12,6 +12,16 @@ class MyNavigationRail extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return NavigationRail(
+      backgroundColor: Colors.white,
+      leading: const Padding(
+        padding: EdgeInsets.only(top: 10, bottom: 30),
+        child: Image(
+          image: AssetImage("assets/images/logo-1-transparent.png"),
+          width: 100,
+          filterQuality: FilterQuality.high,
+          isAntiAlias: true,
+        ),
+      ),
       useIndicator: true,
       labelType: NavigationRailLabelType.all,
       selectedIndex: ref.watch(railIndexProvider),
@@ -35,14 +45,14 @@ class MyNavigationRail extends ConsumerWidget {
           label: Text('Settings'),
         ),
       ],
-      trailing: Expanded(
+      trailing: const Expanded(
         child: Align(
           alignment: Alignment.bottomCenter,
           child: Padding(
-            padding: const EdgeInsets.only(bottom: 20.0),
+            padding: EdgeInsets.only(bottom: 20.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
-              children: const [
+              children: [
                 RailLogoutButton(),
               ],
             ),
