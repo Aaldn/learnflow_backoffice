@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart' hide Headers;
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:learnflow_backoffice/dto/jwt_response.dto.dart';
 import 'package:learnflow_backoffice/dto/login_information.dto.dart';
 import 'package:learnflow_backoffice/models/booking.dart';
 import 'package:learnflow_backoffice/models/chat.dart';
@@ -41,10 +42,10 @@ abstract class ApiService {
 
   // Login
   @POST("/auth/login/manager/")
-  Future<dynamic> login(@Body() LoginInformation loginInformation);
+  Future<JwtResponse> login(@Body() LoginInformation loginInformation);
 
   // Logout
-  @POST("/logout")
+  @POST("/auth/logout")
   Future<void> logout();
 
   // Booking

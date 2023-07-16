@@ -15,7 +15,7 @@ class SecureStorageNotifier extends StateNotifier<String?> {
     return await secureStorage.read(key: "api_token");
   }
 
-  Future<void> setApiToken(String token) async {
+  Future<void> setApiToken(String? token) async {
     await secureStorage.write(key: "api_token", value: token);
   }
 

@@ -63,10 +63,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                               final apiToken = await ref
                                   .watch(secureStorageProvider)
                                   .getApiToken();
-                              final manager = await ref
+                              final jwtResponse = await ref
                                   .read(apiServiceProvider(apiToken))
                                   .login(loginInformation);
-                              debugPrint(manager);
+                              debugPrint(jwtResponse.toString());
+                              await ref
+                                  .read(secureStorageProvider)
+                                  .setApiToken(jwtResponse.jwt?.token);
                               SnackBar loginSuccessSnackbar = const SnackBar(
                                   content: Text("Vous êtes bien connecté"));
                               if (!mounted) return;
