@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:learnflow_backoffice/screens/home/widgets/logout_alert_dialog.dart';
+import 'package:learnflow_backoffice/services/authentication/secure_storage.dart';
+
+final userEmailProvider = FutureProvider.autoDispose<String?>((ref) async {
+  final email = await ref.watch(secureStorageProvider).getEmailPayload();
+  return email;
+});
 
 class MyAppBarUserButton extends ConsumerWidget {
   const MyAppBarUserButton({super.key});
@@ -27,7 +33,13 @@ class MyAppBarUserButton extends ConsumerWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 8),
                   child: Text(
-                    "Aldn A",
+                    ref.watch(userEmailProvider).when(
+                          data: (email) {
+                            return email ?? "";
+                          },
+                          error: (error, stackTrace) => "",
+                          loading: () => "",
+                        ),
                     style: Theme.of(context).textTheme.labelLarge?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),

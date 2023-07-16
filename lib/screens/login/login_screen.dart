@@ -70,6 +70,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                               await ref
                                   .read(secureStorageProvider)
                                   .setApiToken(jwtResponse.jwt?.token);
+                              await ref
+                                  .read(secureStorageProvider)
+                                  .setEmailPayload(
+                                    jwtResponse.jwt?.payload?.email,
+                                  );
                               SnackBar loginSuccessSnackbar = const SnackBar(
                                   content: Text("Vous êtes bien connecté"));
                               if (!mounted) return;

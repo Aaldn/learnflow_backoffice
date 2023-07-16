@@ -19,7 +19,24 @@ class SecureStorageNotifier extends StateNotifier<String?> {
     await secureStorage.write(key: "api_token", value: token);
   }
 
-  Future<void> deleteApiToken(String token) async {
+  Future<String?> getEmailPayload() async {
+    return await secureStorage.read(key: "email_payload");
+  }
+
+  Future<void> setEmailPayload(String? token) async {
+    await secureStorage.write(key: "email_payload", value: token);
+  }
+
+  Future<void> deleteJwt() async {
+    await _deleteApiToken();
+    await _deleteApiPayload();
+  }
+
+  Future<void> _deleteApiToken() async {
     await secureStorage.delete(key: "api_token");
+  }
+
+  Future<void> _deleteApiPayload() async {
+    await secureStorage.delete(key: "payload");
   }
 }

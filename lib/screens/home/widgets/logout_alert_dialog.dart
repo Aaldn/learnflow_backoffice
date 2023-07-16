@@ -36,7 +36,7 @@ class _LogoutAlertDialogState extends ConsumerState<LogoutAlertDialog> {
               final apiToken =
                   await ref.read(secureStorageProvider).getApiToken();
               await ref.read(apiServiceProvider(apiToken)).logout();
-              await ref.read(secureStorageProvider).setApiToken(null);
+              await ref.read(secureStorageProvider).deleteJwt();
               if (!mounted) return;
               Navigator.of(context).pop();
               Navigator.of(context).pushReplacement(
