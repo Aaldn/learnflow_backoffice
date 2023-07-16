@@ -4,7 +4,7 @@
 Créez un fichier `.env` à la racine du projet et ajoutez-y les informations nécessaires. Exemple :
 
 ```
-# API u
+# API
 API_BASE_URL="http://localhost:3000"
 ```
 
