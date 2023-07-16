@@ -1,16 +1,17 @@
 # learnflow_backoffice
 
-A new Flutter project.
+## Installation
 
-## Getting Started
+Tout d'abord, clonez ce dépôt puis placez-vous au sein du projet :
 
-This project is a starting point for a Flutter application.
+```bash
+$ git clone https://github.com/ousmane-diallo-sio/learnflow-api
+$ cd learnflow-api
+```
 
-A few resources to get you started if this is your first Flutter project:
+Créez un fichier `.env` à la racine du projet et ajoutez-y les informations nécessaires. Exemple :
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```
+# API url
+API_BASE_URL="http://localhost:3000"
+```
