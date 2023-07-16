@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:learnflow_backoffice/screens/home/widgets/app_bar_button.dart';
 import 'package:learnflow_backoffice/screens/home/widgets/app_bar_user_button.dart';
 
 class MyAppBar extends StatelessWidget {
@@ -21,23 +20,7 @@ class MyAppBar extends StatelessWidget {
                 .titleLarge
                 ?.copyWith(fontWeight: FontWeight.bold),
           ),
-          Row(
-            children: [
-              MyAppBarButton(
-                tooltip: "Courriel",
-                onPressed: () {},
-                icon: const Icon(Icons.mail_outline),
-              ),
-              const SizedBox(width: 10),
-              MyAppBarButton(
-                tooltip: "Notification",
-                onPressed: () {},
-                icon: const Icon(Icons.notifications_outlined),
-              ),
-              const SizedBox(width: 10),
-              const MyAppBarUserButton(),
-            ],
-          ),
+          const MyAppBarUserButton(),
         ],
       ),
     );

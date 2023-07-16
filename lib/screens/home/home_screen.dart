@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:learnflow_backoffice/screens/home/widgets/app_bar.dart';
 import 'package:learnflow_backoffice/screens/dashboard/dashboard_screen.dart';
 import 'package:learnflow_backoffice/screens/management/management_screen.dart';
 import 'package:learnflow_backoffice/screens/home/widgets/navigation_rail.dart.dart';
@@ -24,12 +23,7 @@ class HomeScreen extends HookConsumerWidget {
           const MyNavigationRail(),
           const VerticalDivider(thickness: 1, width: 1),
           Expanded(
-            child: Column(
-              children: [
-                const MyAppBar(subScreen: "Dashboard"),
-                Expanded(child: subScreens[currentSubScreenIndex]),
-              ],
-            ),
+            child: subScreens[currentSubScreenIndex],
           ),
         ],
       ),

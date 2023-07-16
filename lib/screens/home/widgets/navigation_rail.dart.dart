@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:learnflow_backoffice/screens/home/widgets/rail_logout_button.dart';
 
-final railIndexProvider = StateProvider<int>((ref) {
-  return 0;
+final railIndexProvider = StateProvider.autoDispose<int>((ref) {
+  return 1;
 });
 
 class MyNavigationRail extends ConsumerWidget {

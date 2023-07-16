@@ -9,8 +9,8 @@ class Justificative with _$Justificative {
     required int? id,
     required String? uploadUrl,
     required String? comment,
-    required String? startDate,
-    required String? endDate,
+    required DateTime? startDate,
+    required DateTime? endDate,
   }) = _Justificative;
 
   factory Justificative.fromJson(Map<String, dynamic> json) =>

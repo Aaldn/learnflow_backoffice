@@ -30,8 +30,8 @@ class MyApp extends ConsumerWidget {
           colors: const FlexSchemeColor(
             primary: Color(0xffffa384),
             primaryContainer: Color(0xffff7d51),
-            secondary: Color(0xff74bdcb),
-            secondaryContainer: Color(0xffe7f2f8),
+            secondary: Color(0xffffa384),
+            secondaryContainer: Color(0xffff7d51),
             tertiary: Color(0xffefe7bc),
             tertiaryContainer: Color(0xffe5d893),
             appBarColor: Color(0xffe7f2f8),
@@ -120,9 +120,7 @@ class MyApp extends ConsumerWidget {
                   ),
                 );
               },
-              loading: () => CircularProgressIndicator(
-                color: Theme.of(context).colorScheme.primary,
-              ),
+              loading: () => null,
             )
         // home: const HomeScreen(),
         );
