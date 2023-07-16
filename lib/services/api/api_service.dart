@@ -1,5 +1,6 @@
-import 'package:chopper/chopper.dart';
+import 'package:dio/dio.dart' hide Headers;
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:learnflow_backoffice/dto/login_information.dto.dart';
 import 'package:learnflow_backoffice/models/booking.dart';
 import 'package:learnflow_backoffice/models/chat.dart';
 import 'package:learnflow_backoffice/models/evaluation.dart';
@@ -16,270 +17,284 @@ import 'package:learnflow_backoffice/models/student.dart';
 import 'package:learnflow_backoffice/models/teacher.dart';
 import 'package:learnflow_backoffice/models/teacher_validation.dart';
 import 'package:learnflow_backoffice/services/env/env.dart';
+import 'package:retrofit/retrofit.dart';
 
-part "api_service.chopper.dart";
+part "api_service.g.dart";
 
-final apiServiceProvider = Provider<ChopperClient>((ref) {
-  final chopper = ChopperClient(
-    baseUrl: Uri.parse(Env.serverUrl),
-    services: [ApiService.create()],
+final apiServiceProvider =
+    Provider.family<ApiService, String?>((ref, apiToken) {
+  final baseOptions = BaseOptions(
+    baseUrl: Env.apiBaseUrl,
+    headers: apiToken != null ? {"Authorization": "Bearer $apiToken"} : null,
   );
-  return chopper;
+  final dio = Dio(baseOptions);
+  return ApiService(dio);
 });
 
-@ChopperApi()
-abstract class ApiService extends ChopperService {
-  static ApiService create([ChopperClient? client]) => _$ApiService(client);
+@RestApi()
+abstract class ApiService {
+  factory ApiService(Dio dio) = _ApiService;
+
+  // HealthCheck
+  @GET("/")
+  Future healthCheck();
+
+  // Login
+  @POST("/auth/login/manager/")
+  Future<dynamic> login(@Body() LoginInformation loginInformation);
+
+  // Logout
+  @POST("/logout")
+  Future<void> logout();
 
   // Booking
-  @Get()
-  Future<Response<List<Booking>>> getBookings();
+  @GET("/bookings")
+  Future<List<Booking>> getBookings();
 
-  @Get(path: "/bookings/{id}")
-  Future<Response<Booking>> getBooking(@Path('id') int id);
+  @GET("/bookings/{id}")
+  Future<Booking> getBooking(@Path('id') int id);
 
-  @Post(path: "/bookings/")
-  Future<Response<Booking>> createBooking(@Body() Booking booking);
+  @POST("/bookings/")
+  Future<Booking> createBooking(@Body() Booking booking);
 
-  @Patch(path: "/bookings/{id}/")
-  Future<Response<Booking>> updateBooking(
+  @PATCH("/bookings/{id}/")
+  Future<Booking> updateBooking(
     @Path('id') int id,
     @Body() Booking booking,
   );
 
   // Chat
-  @Get()
-  Future<Response<List<Chat>>> getChats();
+  @GET("/chats")
+  Future<List<Chat>> getChats();
 
-  @Get(path: "/chats/{id}")
-  Future<Response<Chat>> getChat(@Path('id') int id);
+  @GET("/chats/{id}")
+  Future<Chat> getChat(@Path('id') int id);
 
-  @Post(path: "/chats/")
-  Future<Response<Chat>> createChat(@Body() Chat chat);
+  @POST("/chats/")
+  Future<Chat> createChat(@Body() Chat chat);
 
-  @Patch(path: "/chats/{id}/")
-  Future<Response<Chat>> updateChat(
+  @PATCH("/chats/{id}/")
+  Future<Chat> updateChat(
     @Path('id') int id,
     @Body() Chat chat,
   );
 
   // Evaluation
-  @Get()
-  Future<Response<List<Evaluation>>> getEvaluations();
+  @GET("/evaluations")
+  Future<List<Evaluation>> getEvaluations();
 
-  @Get(path: "/evaluations/{id}")
-  Future<Response<Evaluation>> getEvaluation(@Path('id') int id);
+  @GET("/evaluations/{id}")
+  Future<Evaluation> getEvaluation(@Path('id') int id);
 
-  @Post(path: "/evaluations/")
-  Future<Response<Evaluation>> createEvaluation(@Body() Evaluation evaluation);
+  @POST("/evaluations/")
+  Future<Evaluation> createEvaluation(@Body() Evaluation evaluation);
 
-  @Patch(path: "/evaluations/{id}/")
-  Future<Response<Evaluation>> updateEvaluation(
+  @PATCH("/evaluations/{id}/")
+  Future<Evaluation> updateEvaluation(
     @Path('id') int id,
     @Body() Evaluation evaluation,
   );
 
   // Justificative
-  @Get()
-  Future<Response<List<Justificative>>> getJustificatives();
+  @GET("/justificatives")
+  Future<List<Justificative>> getJustificatives();
 
-  @Get(path: "/justificatives/{id}")
-  Future<Response<Justificative>> getJustificative(@Path('id') int id);
+  @GET("/justificatives/{id}")
+  Future<Justificative> getJustificative(@Path('id') int id);
 
-  @Post(path: "/justificatives/")
-  Future<Response<Justificative>> createJustificative(
+  @POST("/justificatives/")
+  Future<Justificative> createJustificative(
       @Body() Justificative justificative);
 
-  @Patch(path: "/justificatives/{id}/")
-  Future<Response<Justificative>> updateJustificative(
+  @PATCH("/justificatives/{id}/")
+  Future<Justificative> updateJustificative(
     @Path('id') int id,
     @Body() Justificative justificative,
   );
 
   // Manager
-  @Get()
-  Future<Response<List<Manager>>> getManagers();
+  @GET("/managers")
+  Future<List<Manager>> getManagers();
 
-  @Get(path: "/managers/{id}")
-  Future<Response<Manager>> getManager(@Path('id') int id);
+  @GET("/managers/{id}")
+  Future<Manager> getManager(@Path('id') int id);
 
-  @Post(path: "/managers/")
-  Future<Response<Manager>> createManager(@Body() Manager manager);
+  @POST("/managers/")
+  Future<Manager> createManager(@Body() Manager manager);
 
-  @Patch(path: "/managers/{id}/")
-  Future<Response<Manager>> updateManager(
+  @PATCH("/managers/{id}/")
+  Future<Manager> updateManager(
     @Path('id') int id,
     @Body() Manager manager,
   );
 
   // Moderator
-  @Get()
-  Future<Response<List<Moderator>>> getModerators();
+  @GET("/moderators")
+  Future<List<Moderator>> getModerators();
 
-  @Get(path: "/moderators/{id}")
-  Future<Response<Moderator>> getModerator(@Path('id') int id);
+  @GET("/moderators/{id}")
+  Future<Moderator> getModerator(@Path('id') int id);
 
-  @Post(path: "/moderators/")
-  Future<Response<Moderator>> createModerator(@Body() Moderator moderator);
+  @POST("/moderators/")
+  Future<Moderator> createModerator(@Body() Moderator moderator);
 
-  @Patch(path: "/moderators/{id}/")
-  Future<Response<Moderator>> updateModerator(
+  @PATCH("/moderators/{id}/")
+  Future<Moderator> updateModerator(
     @Path('id') int id,
     @Body() Moderator moderator,
   );
 
   // Payment
-  @Get()
-  Future<Response<List<Payment>>> getPayments();
+  @GET("/payments")
+  Future<List<Payment>> getPayments();
 
-  @Get(path: "/payments/{id}")
-  Future<Response<Payment>> getPayment(@Path('id') int id);
+  @GET("/payments/{id}")
+  Future<Payment> getPayment(@Path('id') int id);
 
-  @Post(path: "/payments/")
-  Future<Response<Payment>> createPayment(@Body() Payment payment);
+  @POST("/payments/")
+  Future<Payment> createPayment(@Body() Payment payment);
 
-  @Patch(path: "/payments/{id}/")
-  Future<Response<Payment>> updatePayment(
+  @PATCH("/payments/{id}/")
+  Future<Payment> updatePayment(
     @Path('id') int id,
     @Body() Payment payment,
   );
 
   // Rating
-  @Get()
-  Future<Response<List<Rating>>> getRatings();
+  @GET("/ratings")
+  Future<List<Rating>> getRatings();
 
-  @Get(path: "/ratings/{id}")
-  Future<Response<Rating>> getRating(@Path('id') int id);
+  @GET("/ratings/{id}")
+  Future<Rating> getRating(@Path('id') int id);
 
-  @Post(path: "/ratings/")
-  Future<Response<Rating>> createRating(@Body() Rating rating);
+  @POST("/ratings/")
+  Future<Rating> createRating(@Body() Rating rating);
 
-  @Patch(path: "/ratings/{id}/")
-  Future<Response<Rating>> updateRating(
+  @PATCH("/ratings/{id}/")
+  Future<Rating> updateRating(
     @Path('id') int id,
     @Body() Rating rating,
   );
 
   // ReportType
-  @Get()
-  Future<Response<List<ReportType>>> getReportTypes();
+  @GET("/reportTypes")
+  Future<List<ReportType>> getReportTypes();
 
-  @Get(path: "/reportTypes/{id}")
-  Future<Response<ReportType>> getReportType(@Path('id') int id);
+  @GET("/reportTypes/{id}")
+  Future<ReportType> getReportType(@Path('id') int id);
 
-  @Post(path: "/reportTypes/")
-  Future<Response<ReportType>> createReportType(@Body() ReportType reportType);
+  @POST("/reportTypes/")
+  Future<ReportType> createReportType(@Body() ReportType reportType);
 
-  @Patch(path: "/reportTypes/{id}/")
-  Future<Response<ReportType>> updateReportType(
+  @PATCH("/reportTypes/{id}/")
+  Future<ReportType> updateReportType(
     @Path('id') int id,
     @Body() ReportType reportType,
   );
 
   // Report
-  @Get()
-  Future<Response<List<Report>>> getReports();
+  @GET("/reports")
+  Future<List<Report>> getReports();
 
-  @Get(path: "/reports/{id}")
-  Future<Response<Report>> getReport(@Path('id') int id);
+  @GET("/reports/{id}")
+  Future<Report> getReport(@Path('id') int id);
 
-  @Post(path: "/reports/")
-  Future<Response<Report>> createReport(@Body() Report report);
+  @POST("/reports/")
+  Future<Report> createReport(@Body() Report report);
 
-  @Patch(path: "/reports/{id}/")
-  Future<Response<Report>> updateReport(
+  @PATCH("/reports/{id}/")
+  Future<Report> updateReport(
     @Path('id') int id,
     @Body() Report report,
   );
 
   // SchoolSubjectTaught
-  @Get()
-  Future<Response<List<SchoolSubjectTaught>>> getSchoolSubjectTaughts();
+  @GET("/school_subjects_teached")
+  Future<List<SchoolSubjectTaught>> getSchoolSubjectTaughts();
 
-  @Get(path: "/school_subjects_teached/{id}")
-  Future<Response<SchoolSubjectTaught>> getSchoolSubjectTaught(
-      @Path('id') int id);
+  @GET("/school_subjects_teached/{id}")
+  Future<SchoolSubjectTaught> getSchoolSubjectTaught(@Path('id') int id);
 
-  @Post(path: "/school_subjects_teached/")
-  Future<Response<SchoolSubjectTaught>> createSchoolSubjectTaught(
+  @POST("/school_subjects_teached/")
+  Future<SchoolSubjectTaught> createSchoolSubjectTaught(
     @Body() SchoolSubjectTaught schoolSubjectsTeached,
   );
 
-  @Patch(path: "/school_subjects_teached/{id}/")
-  Future<Response<SchoolSubjectTaught>> updateSchoolSubjectTaught(
+  @PATCH("/school_subjects_teached/{id}/")
+  Future<SchoolSubjectTaught> updateSchoolSubjectTaught(
     @Path('id') int id,
     @Body() SchoolSubjectTaught report,
   );
 
   // SchoolSubject
-  @Get()
-  Future<Response<List<SchoolSubject>>> getSchoolSubjects();
+  @GET("/school_subjects")
+  Future<List<SchoolSubject>> getSchoolSubjects();
 
-  @Get(path: "/school_subjects/{id}")
-  Future<Response<SchoolSubject>> getSchoolSubject(@Path('id') int id);
+  @GET("/school_subjects/{id}")
+  Future<SchoolSubject> getSchoolSubject(@Path('id') int id);
 
-  @Post(path: "/school_subjects/")
-  Future<Response<SchoolSubject>> createSchoolSubject(
+  @POST("/school_subjects/")
+  Future<SchoolSubject> createSchoolSubject(
       @Body() SchoolSubject schoolSubject);
 
-  @Patch(path: "/school_subjects/{id}/")
-  Future<Response<SchoolSubject>> updateSchoolSubject(
+  @PATCH("/school_subjects/{id}/")
+  Future<SchoolSubject> updateSchoolSubject(
     @Path('id') int id,
     @Body() SchoolSubject schoolSubject,
   );
 
   // Student
-  @Get()
-  Future<Response<List<Student>>> getStudents();
+  @GET("/students")
+  Future<List<Student>> getStudents();
 
-  @Get(path: "/students/{id}")
-  Future<Response<Student>> getStudent(@Path('id') int id);
+  @GET("/students/{id}")
+  Future<Student> getStudent(@Path('id') int id);
 
-  @Post(path: "/students/")
-  Future<Response<Student>> createStudent(@Body() Student student);
+  @POST("/students/")
+  Future<Student> createStudent(@Body() Student student);
 
-  @Patch(path: "/students/{id}/")
-  Future<Response<Student>> updateStudent(
+  @PATCH("/students/{id}/")
+  Future<Student> updateStudent(
     @Path('id') int id,
     @Body() Student student,
   );
 
-  @Delete(path: "/students/{id}")
-  Future<Response<Student>> deleteStudent(@Path('id') int id);
+  @DELETE("/students/{id}")
+  Future<Student> deleteStudent(@Path('id') int id);
 
   // TeacherValidation
-  @Get()
-  Future<Response<List<TeacherValidation>>> getTeacherValidations();
+  @GET("/teachers")
+  Future<List<TeacherValidation>> getTeacherValidations();
 
-  @Get(path: "/teachers/{id}")
-  Future<Response<TeacherValidation>> getTeacherValidation(@Path('id') int id);
+  @GET("/teachers/{id}")
+  Future<TeacherValidation> getTeacherValidation(@Path('id') int id);
 
-  @Post(path: "/teachers/")
-  Future<Response<TeacherValidation>> createTeacherValidation(
+  @POST("/teachers/")
+  Future<TeacherValidation> createTeacherValidation(
       @Body() TeacherValidation teacher);
 
-  @Patch(path: "/teachers/{id}/")
-  Future<Response<TeacherValidation>> updateTeacherValidation(
+  @PATCH("/teachers/{id}/")
+  Future<TeacherValidation> updateTeacherValidation(
     @Path('id') int id,
     @Body() TeacherValidation teacher,
   );
 
   // Teacher
-  @Get()
-  Future<Response<List<Teacher>>> getTeachers();
+  @GET("/teachers")
+  Future<List<Teacher>> getTeachers();
 
-  @Get(path: "/teachers/{id}")
-  Future<Response<Teacher>> getTeacher(@Path('id') int id);
+  @GET("/teachers/{id}")
+  Future<Teacher> getTeacher(@Path('id') int id);
 
-  @Post(path: "/teachers/")
-  Future<Response<Teacher>> createTeacher(@Body() Teacher teacher);
+  @POST("/teachers/")
+  Future<Teacher> createTeacher(@Body() Teacher teacher);
 
-  @Patch(path: "/teachers/{id}/")
-  Future<Response<Teacher>> updateTeacher(
+  @PATCH("/teachers/{id}/")
+  Future<Teacher> updateTeacher(
     @Path('id') int id,
     @Body() Teacher teacher,
   );
 
-  @Delete(path: "/teachers/{id}")
-  Future<Response<Teacher>> deleteTeacher(@Path('id') int id);
+  @DELETE("/teachers/{id}")
+  Future<Teacher> deleteTeacher(@Path('id') int id);
 }
