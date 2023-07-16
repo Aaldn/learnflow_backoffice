@@ -3,7 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:learnflow_backoffice/screens/home/widgets/rail_logout_button.dart';
 
 final railIndexProvider = StateProvider.autoDispose<int>((ref) {
-  return 1;
+  return 0;
 });
 
 class MyNavigationRail extends ConsumerWidget {
@@ -29,21 +29,26 @@ class MyNavigationRail extends ConsumerWidget {
         ref.watch(railIndexProvider.notifier).state = value;
       },
       destinations: const <NavigationRailDestination>[
-        NavigationRailDestination(
-          icon: Icon(Icons.dashboard_outlined),
-          selectedIcon: Icon(Icons.dashboard),
-          label: Text('Tableau de bord'),
-        ),
+        // NavigationRailDestination(
+        //   icon: Icon(Icons.dashboard_outlined),
+        //   selectedIcon: Icon(Icons.dashboard),
+        //   label: Text('Tableau de bord'),
+        // ),
         NavigationRailDestination(
           icon: Icon(Icons.table_view),
           selectedIcon: Icon(Icons.table_view_outlined),
           label: Text('Gestion'),
         ),
         NavigationRailDestination(
-          icon: Icon(Icons.settings_outlined),
-          selectedIcon: Icon(Icons.settings),
-          label: Text('Settings'),
+          icon: SizedBox.shrink(),
+          selectedIcon: SizedBox.shrink(),
+          label: SizedBox.shrink(),
         ),
+        // NavigationRailDestination(
+        //   icon: Icon(Icons.settings_outlined),
+        //   selectedIcon: Icon(Icons.settings),
+        //   label: Text('Settings'),
+        // ),
       ],
       trailing: const Expanded(
         child: Align(

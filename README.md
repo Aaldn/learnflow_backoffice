@@ -1,7 +1,7 @@
 # learnflow_backoffice
 
 ## Installation
-Créez un fichier `.env` à la racine du projet et ajoutez-y les informations nécessaires. Exemple :
+Créez un fichier `.env.dev` à la racine du projet et ajoutez-y les informations nécessaires. Exemple :
 
 ```
 # API

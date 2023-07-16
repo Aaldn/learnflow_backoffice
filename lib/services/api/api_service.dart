@@ -42,6 +42,7 @@ abstract class ApiService {
 
   // Login
   @POST("/auth/login/manager/")
+  @Headers(<String, dynamic>{"Content-Type": "application/json"})
   Future<JwtResponse> login(@Body() LoginInformation loginInformation);
 
   // Logout

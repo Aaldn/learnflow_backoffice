@@ -59,6 +59,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                               email: ref.watch(loginInputProvider),
                               password: ref.watch(passwordInputProvider),
                             );
+                            print(loginInformation);
                             try {
                               final apiToken = await ref
                                   .watch(secureStorageProvider)
