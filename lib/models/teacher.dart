@@ -11,7 +11,7 @@ class Teacher with _$Teacher {
     required int? id,
     required String? firstName,
     required String? lastName,
-    required DateTime? birthday,
+    required DateTime? birthdate,
     required String? email,
     required String? phoneNumber,
     required String? profilePictureUrl,
