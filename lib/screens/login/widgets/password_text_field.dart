@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class PasswordTextField extends ConsumerStatefulWidget {
-  const PasswordTextField({super.key, required this.controller});
+  const PasswordTextField({
+    super.key,
+    required this.controller,
+    required this.onChanged,
+  });
 
   final TextEditingController? controller;
+  final Function(String)? onChanged;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -18,6 +23,7 @@ class _PasswordTextFieldState extends ConsumerState<PasswordTextField> {
   Widget build(BuildContext context) {
     return TextField(
       controller: widget.controller,
+      onChanged: widget.onChanged,
       obscureText: _obscureText,
       decoration: InputDecoration(
         hintText: "Mot de passe",

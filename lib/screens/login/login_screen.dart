@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:learnflow_backoffice/dto/login_information.dto.dart';
 import 'package:learnflow_backoffice/screens/home/home_screen.dart';
 import 'package:learnflow_backoffice/screens/login/widgets/login_elevated_button.dart';
 import 'package:learnflow_backoffice/screens/login/widgets/login_form_card.dart';
+import 'package:learnflow_backoffice/services/api/api_service.dart';
+import 'package:learnflow_backoffice/services/authentication/secure_storage.dart';
 
-class LoginScreen extends ConsumerWidget {
+class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends ConsumerState<LoginScreen> {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -46,14 +54,39 @@ class LoginScreen extends ConsumerWidget {
                         ),
                         const SizedBox(height: 50),
                         MyLoginElevatedButton(
-                          onPressed: () {
-                            Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return const HomeScreen();
-                                },
-                              ),
+                          onPressed: () async {
+                            final loginInformation = LoginInformation(
+                              email: ref.watch(loginInputProvider),
+                              password: ref.watch(passwordInputProvider),
                             );
+                            try {
+                              final apiToken = await ref
+                                  .watch(secureStorageProvider)
+                                  .getApiToken();
+                              final manager = await ref
+                                  .read(apiServiceProvider(apiToken))
+                                  .login(loginInformation);
+                              debugPrint(manager);
+                              SnackBar loginSuccessSnackbar = const SnackBar(
+                                  content: Text("Vous êtes bien connecté"));
+                              if (!mounted) return;
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(loginSuccessSnackbar);
+                              if (!mounted) return;
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return const HomeScreen();
+                                  },
+                                ),
+                              );
+                            } catch (e) {
+                              SnackBar loginErrorSnackbar = const SnackBar(
+                                content: Text("Identifiants incorrectes"),
+                              );
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(loginErrorSnackbar);
+                            }
                           },
                           child: const Text("Se connecter"),
                         ),
