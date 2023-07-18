@@ -49,6 +49,7 @@ dependencies:
   flutter_secure_storage: ^8.0.0
   retrofit: ^4.0.1
   dio: ^5.1.2
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:

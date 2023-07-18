@@ -2,6 +2,7 @@ import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:learnflow_backoffice/screens/home/home_screen.dart';
 import 'package:learnflow_backoffice/screens/login/login_screen.dart';
 import 'package:learnflow_backoffice/services/authentication/secure_storage.dart';
@@ -12,7 +13,9 @@ final isAuthenticatedProvider = FutureProvider<bool>((ref) async {
 });
 
 void main() {
-  runApp(const ProviderScope(child: MyApp()));
+  initializeDateFormatting("fr_FR", null).then((_) {
+    runApp(const ProviderScope(child: MyApp()));
+  });
 }
 
 class MyApp extends ConsumerWidget {

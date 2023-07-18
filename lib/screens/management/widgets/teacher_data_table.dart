@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:learnflow_backoffice/models/teacher.dart';
 import 'package:learnflow_backoffice/services/api/api_service.dart';
 import 'package:learnflow_backoffice/services/authentication/secure_storage.dart';
+import 'package:learnflow_backoffice/utils/date_format.dart';
 
 final teachersProvider = FutureProvider<List<Teacher>>((ref) async {
   final apiToken = await ref.watch(secureStorageProvider).getApiToken();
@@ -35,16 +36,22 @@ class TeacherDataTable extends ConsumerWidget {
                 DataColumn(label: Text('Date de naissance')),
                 DataColumn(label: Text('Email')),
                 DataColumn(label: Text('Numéro de téléphone')),
+                DataColumn(label: Text('Address')),
               ],
               rows: teachers.map((teacher) {
                 return DataRow(cells: [
                   DataCell(Text(teacher.firstName ?? '')),
                   DataCell(Text(teacher.lastName ?? '')),
                   DataCell(
-                    Text(teacher.birthdate?.toString() ?? ''),
+                    Text(teacher.birthdate?.formatFr ?? ''),
                   ),
                   DataCell(Text(teacher.email ?? '')),
                   DataCell(Text(teacher.phoneNumber ?? '')),
+                  DataCell(
+                    Text(
+                      "${teacher.address?.street ?? ""}, ${teacher.address?.city ?? ""}, ${teacher.address?.zipCode ?? ""}",
+                    ),
+                  ),
                 ]);
               }).toList(),
             );
