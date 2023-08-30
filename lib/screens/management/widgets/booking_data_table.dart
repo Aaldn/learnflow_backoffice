@@ -26,11 +26,6 @@ class _BookingDataTableState extends ConsumerState<BookingDataTable> {
   Widget build(BuildContext context) {
     final List<PlutoColumn> columns = <PlutoColumn>[
       PlutoColumn(
-        title: '_id',
-        field: '_id',
-        type: PlutoColumnType.text(),
-      ),
-      PlutoColumn(
         title: 'Début',
         field: 'startDate',
         type: PlutoColumnType.text(),
