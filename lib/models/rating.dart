@@ -8,7 +8,7 @@ part 'rating.g.dart';
 @freezed
 class Rating with _$Rating {
   factory Rating({
-    required int? id,
+    @JsonKey(name: '_id') required String? id,
     required int? note,
     required Student? student,
     required Teacher? teacher,

@@ -9,7 +9,7 @@ part 'evaluation.g.dart';
 @freezed
 class Evaluation with _$Evaluation {
   factory Evaluation({
-    required int? id,
+    @JsonKey(name: '_id') required String? id,
     required String? note,
     required SchoolSubject? subject,
     required Student? student,

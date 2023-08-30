@@ -6,7 +6,7 @@ part 'teacher_validation.g.dart';
 @freezed
 class TeacherValidation with _$TeacherValidation {
   factory TeacherValidation({
-    required int? id,
+    @JsonKey(name: '_id') required String? id,
     required DateTime? date,
     required bool? isValidated,
     required String? comment,

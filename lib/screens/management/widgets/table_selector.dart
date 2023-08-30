@@ -27,14 +27,14 @@ class TableSelector extends ConsumerWidget {
           title: "Professeurs",
           onTap: () => ref.watch(dataTableIndexProvider.notifier).state = 1,
         ),
-        // TableSelectorItem(
-        //   id: 2,
-        //   icon: ref.watch(dataTableIndexProvider) == 2
-        //       ? Icons.book
-        //       : Icons.book_outlined,
-        //   title: "Bookings",
-        //   onTap: () => ref.watch(dataTableIndexProvider.notifier).state = 2,
-        // ),
+        TableSelectorItem(
+          id: 2,
+          icon: ref.watch(dataTableIndexProvider) == 2
+              ? Icons.book
+              : Icons.book_outlined,
+          title: "Bookings",
+          onTap: () => ref.watch(dataTableIndexProvider.notifier).state = 2,
+        ),
         // TableSelectorItem(
         //   id: 3,
         //   icon: ref.watch(dataTableIndexProvider) == 3

@@ -6,7 +6,7 @@ part 'school_subject.g.dart';
 @freezed
 class SchoolSubject with _$SchoolSubject {
   factory SchoolSubject({
-    required int? id,
+    @JsonKey(name: '_id') required String? id,
     required String? name,
   }) = _SchoolSubject;
 

@@ -6,7 +6,7 @@ part 'report_type.g.dart';
 @freezed
 class ReportType with _$ReportType {
   factory ReportType({
-    required int? id,
+    @JsonKey(name: '_id') required String? id,
     required String? name,
   }) = _ReportType;
 

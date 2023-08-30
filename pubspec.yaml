@@ -50,6 +50,7 @@ dependencies:
   retrofit: ^4.0.1
   dio: ^5.1.2
   intl: ^0.18.1
+  pluto_grid: ^7.0.2
 
 dev_dependencies:
   flutter_test:

@@ -9,7 +9,7 @@ part 'chat.g.dart';
 @freezed
 class Chat with _$Chat {
   factory Chat({
-    required int? id,
+    @JsonKey(name: '_id') required String? id,
     required String? message,
     required DateTime? datetime,
     required Student? student,

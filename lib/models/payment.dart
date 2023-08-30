@@ -6,7 +6,7 @@ part 'payment.g.dart';
 @freezed
 class Payment with _$Payment {
   factory Payment({
-    required int? id,
+    @JsonKey(name: '_id') required String? id,
     required String? amount,
     required DateTime? date,
     required bool? isDue,

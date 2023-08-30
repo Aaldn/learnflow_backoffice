@@ -6,7 +6,7 @@ part 'document_type.g.dart';
 @freezed
 class DocumentType with _$DocumentType {
   factory DocumentType({
-    required int? id,
+    @JsonKey(name: '_id') required String? id,
     required String? name,
   }) = _DocumentType;
 

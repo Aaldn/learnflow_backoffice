@@ -7,7 +7,7 @@ part 'document.g.dart';
 @freezed
 class Document with _$Document {
   factory Document({
-    required int? id,
+    @JsonKey(name: '_id') required String? id,
     required String? uploadUrl,
     required DocumentType? documentType,
   }) = _Document;

@@ -1,3 +1,5 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers
+
 import 'package:dio/dio.dart' hide Headers;
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:learnflow_backoffice/dto/jwt_response.dto.dart';
@@ -27,6 +29,7 @@ final apiServiceProvider =
   final baseOptions = BaseOptions(
     baseUrl: Env.apiBaseUrl,
     headers: apiToken != null ? {"Authorization": "Bearer $apiToken"} : null,
+    contentType: "application/json",
   );
   final dio = Dio(baseOptions);
   return ApiService(dio);
@@ -53,31 +56,34 @@ abstract class ApiService {
   @GET("/bookings")
   Future<List<Booking>> getBookings();
 
-  @GET("/bookings/{id}")
-  Future<Booking> getBooking(@Path('id') int id);
+  @GET("/bookings/{_id}")
+  Future<Booking> getBooking(@Path('_id') String _id);
 
   @POST("/bookings/")
   Future<Booking> createBooking(@Body() Booking booking);
 
-  @PATCH("/bookings/{id}/")
-  Future<Booking> updateBooking(
-    @Path('id') int id,
+  @PATCH("/bookings/{_id}/")
+  Future<List<Booking>> updateBooking(
+    @Path('_id') String _id,
     @Body() Booking booking,
   );
+
+  @DELETE("/bookings/{_id}")
+  Future<bool> deleteBooking(@Path('_id') String _id);
 
   // Chat
   @GET("/chats")
   Future<List<Chat>> getChats();
 
-  @GET("/chats/{id}")
-  Future<Chat> getChat(@Path('id') int id);
+  @GET("/chats/{_id}")
+  Future<Chat> getChat(@Path('_id') String _id);
 
   @POST("/chats/")
   Future<Chat> createChat(@Body() Chat chat);
 
-  @PATCH("/chats/{id}/")
-  Future<Chat> updateChat(
-    @Path('id') int id,
+  @PATCH("/chats/{_id}/")
+  Future<List<Chat>> updateChat(
+    @Path('_id') String _id,
     @Body() Chat chat,
   );
 
@@ -85,15 +91,15 @@ abstract class ApiService {
   @GET("/evaluations")
   Future<List<Evaluation>> getEvaluations();
 
-  @GET("/evaluations/{id}")
-  Future<Evaluation> getEvaluation(@Path('id') int id);
+  @GET("/evaluations/{_id}")
+  Future<Evaluation> getEvaluation(@Path('_id') String _id);
 
   @POST("/evaluations/")
   Future<Evaluation> createEvaluation(@Body() Evaluation evaluation);
 
-  @PATCH("/evaluations/{id}/")
-  Future<Evaluation> updateEvaluation(
-    @Path('id') int id,
+  @PATCH("/evaluations/{_id}/")
+  Future<List<Evaluation>> updateEvaluation(
+    @Path('_id') String _id,
     @Body() Evaluation evaluation,
   );
 
@@ -101,16 +107,16 @@ abstract class ApiService {
   @GET("/justificatives")
   Future<List<Justificative>> getJustificatives();
 
-  @GET("/justificatives/{id}")
-  Future<Justificative> getJustificative(@Path('id') int id);
+  @GET("/justificatives/{_id}")
+  Future<Justificative> getJustificative(@Path('_id') String _id);
 
   @POST("/justificatives/")
   Future<Justificative> createJustificative(
       @Body() Justificative justificative);
 
-  @PATCH("/justificatives/{id}/")
-  Future<Justificative> updateJustificative(
-    @Path('id') int id,
+  @PATCH("/justificatives/{_id}/")
+  Future<List<Justificative>> updateJustificative(
+    @Path('_id') String _id,
     @Body() Justificative justificative,
   );
 
@@ -118,15 +124,15 @@ abstract class ApiService {
   @GET("/managers")
   Future<List<Manager>> getManagers();
 
-  @GET("/managers/{id}")
-  Future<Manager> getManager(@Path('id') int id);
+  @GET("/managers/{_id}")
+  Future<Manager> getManager(@Path('_id') String _id);
 
   @POST("/managers/")
   Future<Manager> createManager(@Body() Manager manager);
 
-  @PATCH("/managers/{id}/")
-  Future<Manager> updateManager(
-    @Path('id') int id,
+  @PATCH("/managers/{_id}/")
+  Future<List<Manager>> updateManager(
+    @Path('_id') String _id,
     @Body() Manager manager,
   );
 
@@ -134,15 +140,15 @@ abstract class ApiService {
   @GET("/moderators")
   Future<List<Moderator>> getModerators();
 
-  @GET("/moderators/{id}")
-  Future<Moderator> getModerator(@Path('id') int id);
+  @GET("/moderators/{_id}")
+  Future<Moderator> getModerator(@Path('_id') String _id);
 
   @POST("/moderators/")
   Future<Moderator> createModerator(@Body() Moderator moderator);
 
-  @PATCH("/moderators/{id}/")
-  Future<Moderator> updateModerator(
-    @Path('id') int id,
+  @PATCH("/moderators/{_id}/")
+  Future<List<Moderator>> updateModerator(
+    @Path('_id') String _id,
     @Body() Moderator moderator,
   );
 
@@ -150,15 +156,15 @@ abstract class ApiService {
   @GET("/payments")
   Future<List<Payment>> getPayments();
 
-  @GET("/payments/{id}")
-  Future<Payment> getPayment(@Path('id') int id);
+  @GET("/payments/{_id}")
+  Future<Payment> getPayment(@Path('_id') String _id);
 
   @POST("/payments/")
   Future<Payment> createPayment(@Body() Payment payment);
 
-  @PATCH("/payments/{id}/")
-  Future<Payment> updatePayment(
-    @Path('id') int id,
+  @PATCH("/payments/{_id}/")
+  Future<List<Payment>> updatePayment(
+    @Path('_id') String _id,
     @Body() Payment payment,
   );
 
@@ -166,15 +172,15 @@ abstract class ApiService {
   @GET("/ratings")
   Future<List<Rating>> getRatings();
 
-  @GET("/ratings/{id}")
-  Future<Rating> getRating(@Path('id') int id);
+  @GET("/ratings/{_id}")
+  Future<Rating> getRating(@Path('_id') String _id);
 
   @POST("/ratings/")
   Future<Rating> createRating(@Body() Rating rating);
 
-  @PATCH("/ratings/{id}/")
-  Future<Rating> updateRating(
-    @Path('id') int id,
+  @PATCH("/ratings/{_id}/")
+  Future<List<Rating>> updateRating(
+    @Path('_id') String _id,
     @Body() Rating rating,
   );
 
@@ -182,15 +188,15 @@ abstract class ApiService {
   @GET("/reportTypes")
   Future<List<ReportType>> getReportTypes();
 
-  @GET("/reportTypes/{id}")
-  Future<ReportType> getReportType(@Path('id') int id);
+  @GET("/reportTypes/{_id}")
+  Future<ReportType> getReportType(@Path('_id') String _id);
 
   @POST("/reportTypes/")
   Future<ReportType> createReportType(@Body() ReportType reportType);
 
-  @PATCH("/reportTypes/{id}/")
-  Future<ReportType> updateReportType(
-    @Path('id') int id,
+  @PATCH("/reportTypes/{_id}/")
+  Future<List<ReportType>> updateReportType(
+    @Path('_id') String _id,
     @Body() ReportType reportType,
   );
 
@@ -198,15 +204,15 @@ abstract class ApiService {
   @GET("/reports")
   Future<List<Report>> getReports();
 
-  @GET("/reports/{id}")
-  Future<Report> getReport(@Path('id') int id);
+  @GET("/reports/{_id}")
+  Future<Report> getReport(@Path('_id') String _id);
 
   @POST("/reports/")
   Future<Report> createReport(@Body() Report report);
 
-  @PATCH("/reports/{id}/")
-  Future<Report> updateReport(
-    @Path('id') int id,
+  @PATCH("/reports/{_id}/")
+  Future<List<Report>> updateReport(
+    @Path('_id') String _id,
     @Body() Report report,
   );
 
@@ -214,17 +220,17 @@ abstract class ApiService {
   @GET("/school_subjects_teached")
   Future<List<SchoolSubjectTaught>> getSchoolSubjectTaughts();
 
-  @GET("/school_subjects_teached/{id}")
-  Future<SchoolSubjectTaught> getSchoolSubjectTaught(@Path('id') int id);
+  @GET("/school_subjects_teached/{_id}")
+  Future<SchoolSubjectTaught> getSchoolSubjectTaught(@Path('_id') String _id);
 
   @POST("/school_subjects_teached/")
   Future<SchoolSubjectTaught> createSchoolSubjectTaught(
     @Body() SchoolSubjectTaught schoolSubjectsTeached,
   );
 
-  @PATCH("/school_subjects_teached/{id}/")
-  Future<SchoolSubjectTaught> updateSchoolSubjectTaught(
-    @Path('id') int id,
+  @PATCH("/school_subjects_teached/{_id}/")
+  Future<List<SchoolSubjectTaught>> updateSchoolSubjectTaught(
+    @Path('_id') String _id,
     @Body() SchoolSubjectTaught report,
   );
 
@@ -232,16 +238,16 @@ abstract class ApiService {
   @GET("/school_subjects")
   Future<List<SchoolSubject>> getSchoolSubjects();
 
-  @GET("/school_subjects/{id}")
-  Future<SchoolSubject> getSchoolSubject(@Path('id') int id);
+  @GET("/school_subjects/{_id}")
+  Future<SchoolSubject> getSchoolSubject(@Path('_id') String _id);
 
   @POST("/school_subjects/")
   Future<SchoolSubject> createSchoolSubject(
       @Body() SchoolSubject schoolSubject);
 
-  @PATCH("/school_subjects/{id}/")
-  Future<SchoolSubject> updateSchoolSubject(
-    @Path('id') int id,
+  @PATCH("/school_subjects/{_id}/")
+  Future<List<SchoolSubject>> updateSchoolSubject(
+    @Path('_id') String _id,
     @Body() SchoolSubject schoolSubject,
   );
 
@@ -249,35 +255,35 @@ abstract class ApiService {
   @GET("/students")
   Future<List<Student>> getStudents();
 
-  @GET("/students/{id}")
-  Future<Student> getStudent(@Path('id') int id);
+  @GET("/students/{_id}")
+  Future<Student> getStudent(@Path('_id') String _id);
 
   @POST("/students/")
   Future<Student> createStudent(@Body() Student student);
 
-  @PATCH("/students/{id}/")
-  Future<Student> updateStudent(
-    @Path('id') int id,
+  @PATCH("/students/{_id}/")
+  Future<List<Student>> updateStudent(
+    @Path('_id') String _id,
     @Body() Student student,
   );
 
-  @DELETE("/students/{id}")
-  Future<Student> deleteStudent(@Path('id') int id);
+  @DELETE("/students/{_id}")
+  Future<bool> deleteStudent(@Path('_id') String _id);
 
   // TeacherValidation
   @GET("/teachers")
   Future<List<TeacherValidation>> getTeacherValidations();
 
-  @GET("/teachers/{id}")
-  Future<TeacherValidation> getTeacherValidation(@Path('id') int id);
+  @GET("/teachers/{_id}")
+  Future<TeacherValidation> getTeacherValidation(@Path('_id') String _id);
 
   @POST("/teachers/")
   Future<TeacherValidation> createTeacherValidation(
       @Body() TeacherValidation teacher);
 
-  @PATCH("/teachers/{id}/")
-  Future<TeacherValidation> updateTeacherValidation(
-    @Path('id') int id,
+  @PATCH("/teachers/{_id}/")
+  Future<List<TeacherValidation>> updateTeacherValidation(
+    @Path('_id') String _id,
     @Body() TeacherValidation teacher,
   );
 
@@ -285,18 +291,18 @@ abstract class ApiService {
   @GET("/teachers")
   Future<List<Teacher>> getTeachers();
 
-  @GET("/teachers/{id}")
-  Future<Teacher> getTeacher(@Path('id') int id);
+  @GET("/teachers/{_id}")
+  Future<Teacher> getTeacher(@Path('_id') String _id);
 
   @POST("/teachers/")
   Future<Teacher> createTeacher(@Body() Teacher teacher);
 
-  @PATCH("/teachers/{id}/")
-  Future<Teacher> updateTeacher(
-    @Path('id') int id,
+  @PATCH("/teachers/{_id}/")
+  Future<List<Teacher>> updateTeacher(
+    @Path('_id') String _id,
     @Body() Teacher teacher,
   );
 
-  @DELETE("/teachers/{id}")
-  Future<Teacher> deleteTeacher(@Path('id') int id);
+  @DELETE("/teachers/{_id}")
+  Future<Teacher> deleteTeacher(@Path('_id') String _id);
 }

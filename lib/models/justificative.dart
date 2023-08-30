@@ -6,7 +6,7 @@ part 'justificative.g.dart';
 @freezed
 class Justificative with _$Justificative {
   factory Justificative({
-    required int? id,
+    @JsonKey(name: '_id') required String? id,
     required String? uploadUrl,
     required String? comment,
     required DateTime? startDate,

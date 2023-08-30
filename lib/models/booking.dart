@@ -11,7 +11,7 @@ part 'booking.g.dart';
 @freezed
 class Booking with _$Booking {
   factory Booking({
-    required int? id,
+    @JsonKey(name: '_id') required String? id,
     required DateTime? startDate,
     required DateTime? endDate,
     required bool? isAccepted,
